@@ -1,8 +1,8 @@
 <%
-	String id = (String)session.getAttribute("id");
-	if(id != null){
+	String name = (String)session.getAttribute("name");
+	if(name != null){
 		try{
-			out.println(id);
+			out.println(name);
 		}catch(Exception ex){}
 	}
 %>

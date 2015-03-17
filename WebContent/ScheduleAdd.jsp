@@ -1,39 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="java.sql.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>行動予定表</title>
+<script type="text/javascript">
+<!--
+function disp(){
+	// 「OK」時の処理開始 ＋ 確認ダイアログの表示
+	if(window.confirm('登録しますか？')){
+		location.href = "Update.jsp"; // Update.jsp へジャンプ
+	}
+	// 「OK」時の処理終了
+	// 「キャンセル」時の処理開始
+	else{
+		window.alert('キャンセルされました'); // 警告ダイアログを表示
+	}
+	// 「キャンセル」時の処理終了
+}
+// -->
+</script>
 </head>
 <body>
 <%
-// 	HttpSession ses = request.getSession();
-// 	String name = (String)ses.getAttribute("name");
-// 	request.setCharacterEncoding("UTF-8");
-
-// 	String year = request.getParameter("year");
-// 	String month = request.getParameter("month");
-// 	String day = request.getParameter("day");
-// 	String hour = request.getParameter("hour");
-// 	String minute = request.getParameter("minute");
-	String id = request.getParameter("id");
-	String name = request.getParameter("name");
-// 	String place = request.getParameter("place");
-// 	String date = year + month + day + hour;
-// 	Class.forName("com.mysql.jdbc.Driver");
-// 	Connection users = DriverManager.getConnection("jdbc:mysql://localhost/vsn_scheduleDB","root","password");
-// 	Statement state = users.createStatement();
-// 	int res = state.executeUpdate("insert into schedule set date=" + date + "\",time=" + minute + "\",id=" + id + "\",name=" + user + "\",place=" + place);
-//  	out.println("<table border=1>");
-//  	out.println("<tr><th>日付</th><th>時間</th><th>社員番号</th><th>名前</th><th>行先</th></tr>");
+	request.setCharacterEncoding("UTF-8");
+	HttpSession ses = request.getSession();
+	String id = (String)ses.getAttribute("id");
+	String name = (String)ses.getAttribute("name");
 %>
 <h2>行動予定の登録</h2>
-<form method="post">
+<form method="post"action="Update.jsp">
 <table border=1>
 <tr><th>日付</th><th>時間</th><th>社員番号</th><th>名前</th><th>行先</th></tr>
-<tr><td>
+<tr>
+<td>
 <select name="year">
 <option value="2015"selected>2015</option>
 <option value="2016">2016</option>
@@ -122,20 +123,17 @@
 </select>
 </td>
 <td>
-<!-- <input type="text" name="id" maxlength="7"> -->
 <%=id %>
 </td>
 <td>
-<!-- <input type="text" name="name" maxlength="10"> -->
 <%=name %>
 </td>
 <td>
-<input type="text" name="place" maxlength="20">
+<input type="text" name="place" maxlength="10">
 </td>
 </tr>
 </table>
-
-<input type="button" value="登録">
+<input type="submit" value="登録" onclick="disp()">
 <input type="button" value="行動予定一覧へ" onclick="location.href='Schedule.jsp'">
 <input type="button" value="ログアウト" >
 </form>

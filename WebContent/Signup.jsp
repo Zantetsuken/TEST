@@ -13,7 +13,7 @@
 	String id = request.getParameter("id");
 	String name = request.getParameter("name");
 	Class.forName("com.mysql.jdbc.Driver");
-	Connection users = DriverManager.getConnection("jdbc:mysql://localhost/vsn_scheduleDB","root","password");
+	Connection users = DriverManager.getConnection("jdbc:mysql://localhost/vsn_scheduleDB","root","");
 	Statement state = users.createStatement();
 	ResultSet result = state.executeQuery("select * from user where id=\"" + id + "\"");
 	boolean flg = false;
